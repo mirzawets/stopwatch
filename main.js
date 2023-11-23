@@ -5,31 +5,50 @@ const resetElement = document.getElementById("reset");
 
 let counter = 0;
 let timerId;
+let isStartClicked = false;
 
-// startElement.addEventListener("click", function () {
-//   timerId = setInterval(() => {
-//     counter++;
-//     counterElement.innerText = counter;
-//   }, 1000);
-// });
+  // startElement.addEventListener('click', () => {
+  //   if (isStartClicked === false) {
+  //     timerId = setInterval(() => {
+  //       counter++;
+  //       counterElement.innerText = counter;
+  //     }, 1000);
 
-// pauseElement.addEventListener("click", () => clearInterval(timerId));
-// resetElement.addEventListener("click", () => {
-//   counter = 0;
-//   counterElement.innerText = counter;
-//   clearInterval(timerId);
-// });
+  //     isStartClicked = true;
+  //   }
+  // });
 
-startElement.onclick = function () {
-  timerId = setInterval(() => {
-    counter++;
+  // pauseElement.addEventListener('click', () => {
+  //   isStartClicked = false;
+  //   clearInterval(timerId);
+  // });
+
+  // resetElement.addEventListener('click', () => {
+  //   isStartClicked = false;
+  //   counter = 0;
+  //   counterElement.innerText = counter;
+  //   clearInterval(timerId);
+  // });
+
+  startElement.onclick = () => {
+    if (isStartClicked === false) {
+      timerId = setInterval(() => {
+        counter++;
+        counterElement.innerText = counter;
+      }, 1000);
+
+      isStartClicked = true;
+    }
+  };
+
+  pauseElement.onclick = () => {
+    isStartClicked = false;
+    clearInterval(timerId);
+  };
+
+  resetElement.onclick = () => {
+    isStartClicked = false;
+    counter = 0;
     counterElement.innerText = counter;
-  }, 1000);
-};
-
-pauseElement.onclick = () => clearInterval(timerId);
-resetElement.onclick = () => {
-  counter = 0;
-  counterElement.innerText = counter;
-  clearInterval(timerId);
-};
+    clearInterval(timerId);
+  };
